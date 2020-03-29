@@ -32,6 +32,19 @@ class Menu {
               new Text("box child 2")
             ],
           ),
+          new Dismissible(
+            key: UniqueKey(),
+            background: new Container(
+              color: Colors.red,
+            ),
+            child: new ListTile(
+              title: new Text('内容二'),
+              leading: new Icon(
+                Icons.contact_mail,
+                color: Colors.blue[500],
+              ),
+            ),
+          ),
         ],
       ),
     );

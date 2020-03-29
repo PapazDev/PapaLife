@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:papalife/pages/index/index.dart';
+import 'package:papalife/pages/calender/calender.dart';
 import 'package:papalife/menu.dart';
+
+/* 
+ * 底部Tab栏
+ * 相当于主页面面了
+ */
 
 class Tabs extends StatefulWidget {
   Tabs({Key key}) : super(key: key);
@@ -10,8 +16,8 @@ class Tabs extends StatefulWidget {
 class _TabsState extends State<Tabs> {
   int _currentIndex = 0;
   List _pagesList = [
-    {"title": '首页', "page": MyHomePage(title: '首页')},
-    {"title": '日历', "page": MyHomePage(title: '日历')},
+    {"title": '首页', "page": MyHomePage()},
+    {"title": '日历', "page": MyCalenderPage()},
   ];
   final _scaffoldkey = GlobalKey<ScaffoldState>();
   @override

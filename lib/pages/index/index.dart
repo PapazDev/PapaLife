@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -18,47 +19,121 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints viewportConstraints) {
+        return SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: viewportConstraints.maxHeight,
             ),
-            Text(
-              'test',
-              style: Theme.of(context).textTheme.display1,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                new Card(
+                  elevation: 0, //设置阴影
+                  shape: const RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(14.0))), //设置圆角
+                  child: new Column(
+                    // card只能有一个widget，但这个widget内容可以包含其他的widget
+                    children: [
+                      new ListTile(
+                        title: new Text('待做',
+                            style: new TextStyle(fontWeight: FontWeight.w500)),
+                        leading: new Icon(
+                          Icons.restaurant_menu,
+                          color: Colors.blue[500],
+                        ),
+                        trailing: Icon(Icons.more_vert),
+                      ),
+                      new Divider(),
+                      new ListTile(
+                        title: new Text('内容一',
+                            style: new TextStyle(fontWeight: FontWeight.w500)),
+                        leading: new Icon(
+                          Icons.contact_phone,
+                          color: Colors.blue[500],
+                        ),
+                        trailing: Icon(Icons.check_circle_outline),
+                      ),
+                      new Dismissible(
+                        key: UniqueKey(),
+                        background: new Container(color: Colors.red,),
+                        child: new ListTile(
+                          title: new Text('内容二'),
+                          leading: new Icon(
+                            Icons.contact_mail,
+                            color: Colors.blue[500],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                new Card(
+                  elevation: 0, //设置阴影
+                  shape: const RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(14.0))), //设置圆角
+                  child: new Column(
+                    // card只能有一个widget，但这个widget内容可以包含其他的widget
+                    children: [
+                      new ListTile(
+                        title: new Text('打卡',
+                            style: new TextStyle(fontWeight: FontWeight.w500)),
+                        leading: new Icon(
+                          Icons.restaurant_menu,
+                          color: Colors.blue[500],
+                        ),
+                      ),
+                      new Divider(),
+                      new ListTile(
+                        title: new Text('内容一',
+                            style: new TextStyle(fontWeight: FontWeight.w500)),
+                        leading: new Icon(
+                          Icons.contact_phone,
+                          color: Colors.blue[500],
+                        ),
+                      ),
+                      new ListTile(
+                        title: new Text('内容二'),
+                        leading: new Icon(
+                          Icons.contact_mail,
+                          color: Colors.blue[500],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                new Card(
+                  elevation: 0, //设置阴影
+                  shape: const RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(14.0))), //设置圆角
+                  child: new Column(
+                    // card只能有一个widget，但这个widget内容可以包含其他的widget
+                    children: [
+                      new ListTile(
+                        title: new Text('今日预算',
+                            style: new TextStyle(fontWeight: FontWeight.w500)),
+                        subtitle: new Text('￥1000,000,000'),
+                        leading: new Icon(
+                          Icons.attach_money,
+                          color: Colors.blue[500],
+                        ),
+                        trailing: Icon(Icons.keyboard_arrow_down),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+          ),
+        );
+      },
     );
   }
 }
