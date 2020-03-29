@@ -60,8 +60,23 @@ class _MyHomePageState extends State<MyHomePage> {
                         trailing: Icon(Icons.check_circle_outline),
                       ),
                       new Dismissible(
-                        key: UniqueKey(),
-                        background: new Container(color: Colors.red,),
+                        key: Key('1'),
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.centerLeft,
+                          child: Icon(Icons.delete),
+                        ),
+                        secondaryBackground: Container(
+                          color: Colors.blue,
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
+                            child: Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                         child: new ListTile(
                           title: new Text('内容二'),
                           leading: new Icon(
@@ -69,6 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.blue[500],
                           ),
                         ),
+                        confirmDismiss: (direction) async {
+                          print(direction);
+                          return false;
+                        },
                       )
                     ],
                   ),
