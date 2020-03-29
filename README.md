@@ -1,1 +1,4 @@
 # papalife
+
+## Run
+flutter run
