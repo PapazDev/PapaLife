@@ -22,30 +22,33 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Map> todoList = [
-    {'name': '阅读', 'id': '123', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写1代码', 'id': '312131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0},
-    {'name': '写代码', 'id': '32131231', 'time': 0}
+    {'name': '阅读', 'id': '123', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写1代码', 'id': '312131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false},
+    {'name': '写代码', 'id': '32131231', 'time': 0, 'isTimer': false}
   ];
   void startTimer(index) {
-    const oneSec = const Duration(microseconds: 10);
-    todoList[index]['timer'] = new Timer.periodic(
-      oneSec,
-      (Timer timer) => setState(
-        () {
-          print(timer);
-          todoList[index]['time']= todoList[index]['time']+1;
-        },
-      ),
-    );
+    const oneSec = const Duration(microseconds: 5);
+    setState(() {
+      todoList[index]['isTimer'] = true;
+      todoList[index]['timer'] = new Timer.periodic(
+        oneSec,
+        (Timer timer) => setState(
+          () {
+            print(timer);
+            todoList[index]['time'] = todoList[index]['time'] + 1;
+          },
+        ),
+      );
+    });
   }
 
   @override
@@ -174,19 +177,25 @@ class _MyHomePageState extends State<MyHomePage> {
                                   trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
-                                      IconButton(
-                                        icon: Icon(Icons.play_arrow),
-                                        onPressed: () {
-                                          print('strat');
-                                          startTimer(index);
-                                        },
+                                      Visibility(
+                                        child: IconButton(
+                                          icon: Icon(Icons.play_arrow),
+                                          onPressed: () {
+                                            print('strat');
+                                            startTimer(index);
+                                          },
+                                        ),
                                       ),
-                                      IconButton(
-                                        icon: Icon(Icons.pause),
-                                        onPressed: () {
-                                          print('end');
-                                          todoList[index]['timer'].cancel();
-                                        },
+                                      Visibility(
+                                        visible: todoList[index]['isTimer'],
+                                        child: IconButton(
+                                          icon: Icon(Icons.pause),
+                                          onPressed: () {
+                                            print('end');
+                                            todoList[index]['timer'].cancel();
+                                            todoList[index]['isTimer'] = false;
+                                          },
+                                        ),
                                       ),
                                     ],
                                   ),

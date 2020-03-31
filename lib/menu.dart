@@ -16,34 +16,10 @@ class Menu {
             ),
           ),
           new ListTile(
-            leading: new CircleAvatar(child: new Text("B")),
-            title: new Text('Drawer item B'),
-            subtitle: new Text("Drawer item B subtitle"),
-            onTap: () => {},
-          ),
-          new AboutListTile(
-            icon: new CircleAvatar(child: new Text("Ab")),
-            child: new Text("About"),
-            applicationName: "Test",
-            applicationVersion: "1.0",
-            applicationLegalese: "applicationLegalese",
-            aboutBoxChildren: <Widget>[
-              new Text("BoxChildren"),
-              new Text("box child 2")
-            ],
-          ),
-          new Dismissible(
-            key: UniqueKey(),
-            background: new Container(
-              color: Colors.red,
-            ),
-            child: new ListTile(
-              title: new Text('内容二'),
-              leading: new Icon(
-                Icons.contact_mail,
-                color: Colors.blue[500],
-              ),
-            ),
+            title: new Text('设置',style: new TextStyle(fontSize:18),),
+            onTap: (){
+              print('设置');
+              },
           ),
         ],
       ),
@@ -60,12 +36,10 @@ class Menu {
           "admin@papaz.me",
         ),
         currentAccountPicture: new CircleAvatar(
-          backgroundImage: new AssetImage("images/"),
         ),
         onDetailsPressed: () {},
         otherAccountsPictures: <Widget>[
           new CircleAvatar(
-            backgroundImage: new AssetImage("images/"),
           ),
         ],
         decoration: BoxDecoration(color: Colors.orange));
