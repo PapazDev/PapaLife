@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  device_calendar: ^3.1.0
   fl_chart: ^0.8.7
   syncfusion_flutter_calendar: ^18.1.36-beta
   flutter:
