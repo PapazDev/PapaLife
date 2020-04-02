@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:papalife/pages/index/index.dart';
-import 'package:papalife/pages/calender/calender.dart';
+import 'package:papalife/pages/tab/index/index.dart';
+import 'package:papalife/pages/index/calender.dart';
 import 'package:papalife/menu.dart';
 
 /* 

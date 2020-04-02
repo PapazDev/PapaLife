@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:papalife/tab.dart';
+import 'package:papalife/pages/add/add.dart';
+import 'package:papalife/pages/index/tab.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -12,6 +13,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       home: Tabs(),
+      routes:<String,WidgetBuilder>{
+        '/':(BuildContext context)=>new Tab(),
+        '/add':(BuildContext context)=>new Add(),
+      }
     );
   }
 }

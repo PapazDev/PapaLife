@@ -55,18 +55,19 @@ class _CalenderState extends State<MyCalenderPage> {
 
   @override
   Widget build(BuildContext context) {
+    
+    _getDataSource();
     return Scaffold(
         body: SfCalendar(
       view: CalendarView.month,
-      dataSource: MeetingDataSource(_getDataSource()),
+      dataSource: MeetingDataSource(_meetings),
       monthViewSettings: MonthViewSettings(
           appointmentDisplayMode: MonthAppointmentDisplayMode.indicator,
           showAgenda: true),
     ));
   }
 
-  List<Meeting> _getDataSource() {
-    var meetings = _meetings;
+  void _getDataSource() {
     _meetings.clear();
     final DateTime today = DateTime.now();
     final DateTime startTime =
@@ -75,6 +76,5 @@ class _CalenderState extends State<MyCalenderPage> {
     _meetings.add(Meeting(
         'Conference', startTime, endTime, const Color(0xFF0F8644), false));
     retrieveCalendars();
-    return meetings;
   }
 }
