@@ -1,53 +1,13 @@
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:device_calendar/device_calendar.dart';
+import 'package:papalife/model/metting.dart';
 
 class MyCalenderPage extends StatefulWidget {
   MyCalenderPage({Key key, this.title}) : super(key: key);
   final String title;
   @override
   _CalenderState createState() => _CalenderState();
-}
-
-class MeetingDataSource extends CalendarDataSource {
-  MeetingDataSource(List<Meeting> source) {
-    appointments = source;
-  }
-
-  @override
-  DateTime getStartTime(int index) {
-    return appointments[index].from;
-  }
-
-  @override
-  DateTime getEndTime(int index) {
-    return appointments[index].to;
-  }
-
-  @override
-  String getSubject(int index) {
-    return appointments[index].eventName;
-  }
-
-  @override
-  Color getColor(int index) {
-    return appointments[index].background;
-  }
-
-  @override
-  bool isAllDay(int index) {
-    return appointments[index].isAllDay;
-  }
-}
-
-class Meeting {
-  Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
-
-  String eventName;
-  DateTime from;
-  DateTime to;
-  Color background;
-  bool isAllDay;
 }
 
 class _CalenderState extends State<MyCalenderPage> {
@@ -95,18 +55,19 @@ class _CalenderState extends State<MyCalenderPage> {
 
   @override
   Widget build(BuildContext context) {
+    
+    _getDataSource();
     return Scaffold(
         body: SfCalendar(
       view: CalendarView.month,
-      dataSource: MeetingDataSource(_getDataSource()),
+      dataSource: MeetingDataSource(_meetings),
       monthViewSettings: MonthViewSettings(
           appointmentDisplayMode: MonthAppointmentDisplayMode.indicator,
           showAgenda: true),
     ));
   }
 
-  List<Meeting> _getDataSource() {
-    var meetings = _meetings;
+  void _getDataSource() {
     _meetings.clear();
     final DateTime today = DateTime.now();
     final DateTime startTime =
@@ -115,6 +76,5 @@ class _CalenderState extends State<MyCalenderPage> {
     _meetings.add(Meeting(
         'Conference', startTime, endTime, const Color(0xFF0F8644), false));
     retrieveCalendars();
-    return meetings;
   }
 }
